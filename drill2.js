@@ -27,6 +27,33 @@
 // 10, 3, 9, 15, 19, 14, 17, 16, 13, 12
 //            j                       i 
 //! i is at end, we now know i(12) and j(15) can be swapped and 12 will now have all lesser values to the left and greater values to the right
+// First Partition:
+// [10, 3, 9] 12 [15, 19, 14, 17, 16, 13]
+//  j   i  p       j   i               p
+// [10, 3, 9]
+// i > p ? swap(i,j) : i++
+// [3, 10, 9]
+//      j  i
+// [3] 9 [10] 
+// Second Partition:
+// [3] 9 [10] 12 [15, 19, 14, 17, 16, 13]
+
+//************************************************************** */
+//? When using the first item on the list as a pivot
+// i < p ? swap(j, i) : i++ 
+// [14, 17, 13, 15, 19, 10, 3, 16, 9, 12](PIVOT 14)
+//   p   j   i //! 13 < 14, Swap j(17) and i(13)
+// [14, 13, 17, 15, 19, 10, 3, 16, 9, 12]
+//   p       j           i //! 10 < 14, Swap j(17) and i(10)
+// [14, 13, 10, 15, 19, 17, 3, 16, 9, 12]
+//   p           j          i //! 3 < 14, Swap j(15) and i(3)
+// [14, 13, 10, 3, 19, 17, 15, 16, 9, 12]
+//   p              j              i //! 9 < 14, Swap j(19) and i(9)
+// [14, 13, 10, 3, 9, 17, 15, 16, 19, 12]
+//   p                 j               i //! 12 < 14 Swap j(17) and i(12)
+// [14, 13, 10, 3, 9, 12, 15, 16, 19, 17]
+//   p                     j           i
+
 
 function partition(array, start, end) {
   const pivot = array[end - 1];
@@ -52,5 +79,4 @@ function quickSort(array, start = 0, end = array.length) {
   return array;
 }
 
-//? When using the first item on the list as a pivot
-// 14, 17, 13, 15, 19, 10, 3, 16, 9, 12 
+
